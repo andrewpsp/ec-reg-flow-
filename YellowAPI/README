@@ -1,0 +1,16 @@
+YellowAPI SDK 2.0.0
+
+This package contains the YellowAPI SDK library in business/YellowAPI.py
+as well as a Python/Django project to illustrate the functionality of
+YellowAPI./Users/andrew/Downloads/YellowAPI Python v2.0.0/README
+
+To launch the project, ensure Python 2.4+ and Django 1.4+ are installed
+and run "python src/manage.py runserver" to start the development server.
+Prior to launch, make changes to src/business/views.py so that your
+Deals and Places API key are configured.
+
+Set the deals API key to blank if you do not have one.
+
+
+
+Addtiont 

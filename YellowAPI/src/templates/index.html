@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html> 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>YellowAPI™ Sample Application</title>
+	
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.0.min.css" />
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/static/css/style.css" />
+	
+	<script src="/static/js/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/jquery.mobile-1.4.0.min.js"></script>
+	<script language="javascript">
+		function locateMe() {
+			navigator.geolocation.getCurrentPosition (function (pos) {
+				$("input[name='where']").val(pos.coords.latitude + ", " + pos.coords.longitude);
+			});
+		}
+	</script>	
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-theme="b">
+		<h1><img src="./static/img/yellowapi.png" alt="YellowAPI™ logo" /></h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#places" data-teheme="a" data-ajax="false">Places</a></li>
+					<li><a href="#deals" data-teheme="a" data-ajax="false">Deals</a></li>
+				</ul>
+			</div>
+			<div id="places" class="ui-content">
+				<form action="./search" method="get">
+					<label for="what">What are you looking for?</label>
+					<input type="text" name="what" />
+					<label for="where">Where are you looking? <a data-inline="true" data-role="button" href="javascript:locateMe()" class="fa fa-location-arrow"></a>
+					<input type="text" name="where" data-inline="true" /></label>
+
+					<input type="submit" value="Find it!" />
+				</form>
+			</div>
+			<div id="deals" class="ui-content">
+				<form action="./deals" method="get">
+					<label for="dealtype">Deal type</label>
+					<select name="dealtype">
+						<option value="deal coupon">Deals and Coupons</option>
+						<option value="deal">Deals</option>
+						<option value="coupon">Coupons</option>
+					</select>
+					<label for="what">Keyword</label>​
+					<input type="text" name="what" /><br />
+					<label for="where">Where are you looking (lat, lng)?
+						<a data-inline="true" data-role="button" href="javascript:locateMe()" class="fa fa-location-arrow"></a></label>
+					<input type="text" name="where" />
+					<input type="submit" value="Find it!" />
+				</form>
+			</div>
+		</div>
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>
+
