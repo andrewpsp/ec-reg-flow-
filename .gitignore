@@ -9,6 +9,7 @@ eggs
 parts
 bin
 var
+Dockerfile
 sdist
 develop-eggs
 .installed.cfg
