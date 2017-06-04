@@ -1,0 +1,10 @@
+--- 
+version: "3
+app_type: 
+  entercloud_app_1: CI_FARM
+    app_config_1: app_1.env
+      services: 
+        service_type: master_ci
+        service_type: slave_1 
+        service_type: slave_2 
+        service_type: slave_3 
