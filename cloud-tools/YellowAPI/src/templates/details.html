@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html> 
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+	<title>YellowAPI™ Sample Application</title>
+
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.0.min.css" />
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/static/css/style.css" />
+	
+	<script src="/static/js/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/jquery.mobile-1.4.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-theme="b">
+		<h1><a href="/"><img src="/static/img/yellowapi.png" alt="YellowAPI™ logo" /></a></h1>
+	</div><!-- /header -->
+
+	<div id="content" data-role="content">
+		<header>
+			<div class="left">
+			<!-- Making sure the information is available -->
+			{% if result.logos.EN %}
+				<img src="{{ result.logos.EN }}" alt="Business logo" />
+			{% else %}
+				{% if result.logos.FR %}
+					<img src="{{ result.logos.FR }}" alt="Business logo" />
+				{% else %}
+					<img src="/static/img/nologo.png" alt="Business logo" />
+				{% endif %}
+			{% endif %}
+			</div>
+			
+			<div class="right">
+				<h1>{{ result.name }}</h1>
+				<p>{{ result.address.street }}</p>
+			</div>
+		</header>
+		
+		<ul data-role="listview" class="actions">
+			<li>
+				<a href="tel:{{ result.phones.0.dispNum }}"><span class="lefticon fa fa-phone"></span>{{ result.phones.0.dispNum }}</a>
+			</li>
+			
+			<!-- Making sure the information is available -->
+			{% if result.products.webUrl %}
+			<li>
+				<a href="{{ result.products.webUrl.0 }}"><span class="lefticon fa fa-globe"></span>{{ result.products.webUrl.0 }}</a>
+			</li>
+			{% endif %}
+			
+			<li class="categories">
+				<span class="lefticon fa fa-list"></span>Categories
+				<p>
+					{% for item in result.categories %}
+						{{ item.name }}<br />
+					{% endfor %}
+				</p>
+			</li>
+			
+			{% if dealresult and dealresult.data %}
+				<li class="deals"><span class="lefticon fa fa-tags"></span>Deals and Coupons
+				<p>
+				{% for dealitem in dealresult.data %}
+					{% if dealitem.result.is_coupon %}
+					<span class="fa fa-money"></span>
+					{% else %}	
+					<span class="fa fa-tag"></span>
+					{% endif %}
+					<a target="_blank" href="{{ dealitem.result.Translation.en.attribution_url }}">
+					<img src="{{ dealitem.result.Images.0.url }}" />{{ dealitem.result.Translation.en.short_title }}
+					{% if dealitem.result.Translation.en.price %}
+						- {{dealitem.result.Translation.en.price}}
+					{% endif %}
+					{% if dealitem.result.Translation.en.savings %}
+						(Savings of {{dealitem.result.Translation.en.savings}})
+					{% endif %}</a><br/>
+					
+				{% endfor %}
+				</p></li>
+			{% endif %}
+
+			<!-- Making sure the information is available -->
+			{% if result.geoCode %}
+			<li>
+				<a href="http://maps.google.com/maps?z=16&q={{ result.geoCode.latitude }},{{ result.geoCode.longitude }}"><span class="lefticon fa fa-flag"></span>Show on map</a>
+			</li>
+			{% endif %}
+		</ul>
+		<br />
+		{% if result.products.dispAd.0 %}
+			<div class="center">
+				<img class="ad" src="{{ result.products.dispAd.0.url }}" alt="advertisment" />
+			</div>
+		{% endif %}
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>
