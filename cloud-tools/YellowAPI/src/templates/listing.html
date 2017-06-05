@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html> 
+<html> 
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+	<title>YellowAPI Sample Application</title>
+
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.0.min.css" />
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/static/css/style.css" />
+	
+	<script src="/static/js/jquery-1.10.2.min.js"></script>
+	<script src="/static/js/jquery.mobile-1.4.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-theme="b">
+		<h1><img src="/static/img/yellowapi.png" alt="YellowAPI logo" /></h1>
+	</div><!-- /header -->
+
+	<div data-role="content" data-theme="a">
+		<ul data-role="listview">
+		<!-- Make sure the response contains results -->
+		{% if result and result.listings %}
+			{% for item in result.listings %}
+				<!-- Pass the id of the merchant to the detail page -->
+				<li><a href="./{{ item.id }}?prov={{item.address.prov|urlencode}}&city={{item.address.city|urlencode}}&bus_name={{item.name|urlencode}}">
+					<h3>{{ item.name }}</h3>
+					<p>{{ item.address.street }}
+						{% if item.Deal %}
+						<span class="fa fa-tag"></span>
+						{% endif %}
+					</p>
+				</a></li>
+			{% endfor %}
+		{% else %}
+			<h3>Sorry, there is no result available for your search</h3>
+		{% endif %}
+		</ul>
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

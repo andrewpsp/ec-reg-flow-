@@ -1,0 +1,57 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+ # config.vm.provider "docker" do |d|
+ #   d.image
+ # end 
+#end 
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes \
+config.vm.define 'agent1' do |a|
+
+    a.vm.box = "ubuntu/xenial64"
+    a.vm.hostname = 'entercloud.info.3000'
+    a.vm.network :private_network, ip: '10.0.0.15'
+    a.vm.network "forwarded_port", guest: 80, host: 8081
+    a.vm.network "forwarded_port", guest: 3000, host: 3002
+  end
+
+
+  config.vm.define 'agent2' do |a1|
+    a1.vm.box = "ubuntu/xenial64"
+    a1.vm.hostname = 'entercloud.info.3001'
+    a1.vm.network :private_network, ip: '10.0.0.16'
+    a1.vm.network "forwarded_port", guest: 80, host: 8082
+    a1.vm.network "forwarded_port", guest: 3001, host: 3004
+
+  end
+
+  config.vm.define 'master' do |b|
+    b.vm.box = "ubuntu/xenial64"
+    b.vm.hostname = 'master.cloud'
+    b.vm.network :private_network, ip: '10.0.0.14'
+    b.vm.network "forwarded_port", guest: 80, host: 8083
+    b.vm.network "forwarded_port", guest: 3000, host: 3003
+  end
+
+  config.vm.define 'master1' do |b1|
+    b1.vm.box = "centos/7"
+    b1.vm.hostname = 'master1.cloud'
+    b1.vm.network :private_network, ip: '10.0.0.17'
+    b1.vm.network "forwarded_port", guest: 80, host: 8084
+    b1.vm.network "forwarded_port", guest: 3000, host: 3005
+
+  end
+  
+  config.vm.synced_folder "/Users/andrew/ruby_code/ec-reg-flow-/entercloud_appf", "/vagrant_data"
+
+end

@@ -1,0 +1,71 @@
+﻿html, body {
+	height: 100%;
+	width: 100%;
+}
+
+input.ui-input-text {
+	outline: none;
+	width: 99%;
+}
+
+#content header {
+	min-height: 80px;
+}
+
+#content header img {
+	max-width: 80px;
+	max-height: 80px;
+}
+
+#content .left {
+	float: left;
+	margin-right: 20px;
+}
+
+#content header h1 {
+	font-size: 14px;
+	
+	margin-bottom:  0px;
+}
+
+#content header p {
+	font-size: 12px;
+	
+	margin: 0;
+}
+
+.actions img {
+	max-height: 20px;
+	max-width: 20px;
+}
+
+.categories p {
+	margin: 10px 0 0 20px;
+}
+
+.center {
+	margin: auto;
+	text-align: center;
+}
+
+.ad {
+	max-width: 100%;
+}
+
+h1.ui-title {
+	margin: 0.67em 0;
+}
+
+#map_canvas {
+	width: 100%;
+	height: 100%;
+	
+	min-height: 400px;
+}
+
+
+.lefticon {
+	color: #ccc;
+	font-size: 1.2em;
+	width: 30px;
+}
