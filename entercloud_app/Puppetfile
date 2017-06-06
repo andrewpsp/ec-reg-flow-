@@ -1,0 +1,4 @@
+mod 'dropdata',
+  :git    => 'https://github.com/andrewpsp/ec-reg-flow-.git',
+  :branch => :control_branch,
+  :default_branch => 'master'
