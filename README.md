@@ -1,5 +1,7 @@
 ec-reg-flow-
 ============
+The Enterprise Ready platform designed from the ground up based off a given application stack. Building the next generation user experience for developers and engineers. The key focuses are quality and delivery.
+
 
 Enterprise ready Dynamic Data center -
 
