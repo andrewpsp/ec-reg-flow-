@@ -1,0 +1,18 @@
+Cloud tool kit - ctk - shorthand c
+resource " cloud-call" {
+  name            =  “entercloud requests"
+  internal        = false
+  security_groups = ["${aws_security_group.alb_sg.id}"]
+  subnets         = ["${aws_subnet.public.*.id}"]
+
+  enable_deletion_protection = true
+
+  access_logs {
+    bucket = "${aws_s3_bucket.alb_logs.bucket}"
+    prefix =  “cloud-call"
+  }
+
+  tags {
+    Environment =  “cloud-tool"
+  }
+}
